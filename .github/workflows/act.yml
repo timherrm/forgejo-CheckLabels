@@ -14,3 +14,4 @@ jobs:
           check_labels: "label1,label2"
           present_labels: "label1,label3,label4"
           operator: "or"
+          debug: true

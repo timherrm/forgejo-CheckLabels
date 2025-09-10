@@ -27570,6 +27570,7 @@ async function run() {
 
         const check_labels = check_labelsInput.split(',').map(l => l.trim()).filter(Boolean);
         const present_labels = present_labelsInput.split(',').map(l => l.trim()).filter(Boolean);
+        const debug = core.getInput('debug') === 'true';
 
         let result = false;
         if (operator === 'and') {
@@ -27580,7 +27581,11 @@ async function run() {
             core.setFailed(`Unknown operator: ${operator}`);
             process.exit(1);
         }
-
+        if (debug) {
+            console.log('check_labels:', check_labels);
+            console.log('present_labels:', present_labels);
+            console.log('operator:', operator);
+        }
         if (result) {
             core.setOutput('result', 'Labels matched');
             process.exit(0);

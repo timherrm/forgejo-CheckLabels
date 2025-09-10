@@ -15,6 +15,7 @@ jobs:
           check_labels: "label1,label2,label3"
           present_labels: "label1,label2,label3,label4"
           operator: "and"
+          #debug: true                                   #optional
   job2:
     needs: job1
     runs-on: ubuntu-latest
