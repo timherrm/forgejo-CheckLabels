@@ -1,0 +1,16 @@
+name: forgejo-CheckLabels-Test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  forgejo-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Forgejo API Action
+        uses: ./
+        with:
+          check_labels: "label1,label2"
+          present_labels: "label1,label3,label4"
+          operator: "or"

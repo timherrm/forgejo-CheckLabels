@@ -1,0 +1,24 @@
+name: "Forgejo-CheckLabels"
+description: "A Github Action to check if labels are present on an issue or PR."
+branding:
+  icon: 'terminal'
+  color: 'purple'
+
+inputs:
+  check_labels:
+    description: "The labels to check for in format label1,label2,label3."
+    required: true
+  present_labels:
+    description: "The labels that are present in format label1,label2,label3."
+    required: true
+  operator:
+    description: "The operator to match the labels. Options: and/or"
+    required: true
+
+outputs:
+  result:
+    description: "The result of the action, including success or error messages."
+    value: "${{ steps.run.outputs.result }}"
+runs:
+  using: "node12"
+  main: "dist/index.js"

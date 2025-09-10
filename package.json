@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "@actions/core": "^1.11.1",
+    "@vercel/ncc": "^0.38.3"
+  },
+  "name": "forgejo-checklabels",
+  "version": "1.0.0",
+  "description": "A Github Action to check if labels are present on an issue or PR.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timherrm/forgejo-CheckLabels.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/timherrm/forgejo-CheckLabels/issues"
+  },
+  "homepage": "https://github.com/timherrm/forgejo-CheckLabels#readme",
+  "devDependencies": {}
+}
