@@ -8,12 +8,15 @@ A Github Action to check if labels are present on an issue or PR.
 jobs:
   job1:
     runs-on: ubuntu-latest
+    outputs:
+      label_result: ${{ steps.check_labels.outputs.result }}
     steps:
       - name: Extract labels  #optional
         run: |
           echo "PRESENT_LABELS=$(echo '${{ toJson(github) }}' | jq -r '[.event.issue.labels[].name] | join(",")')" >> $GITHUB_ENV
 
       - name: Run Forgejo API Action
+        id: check_labels
         uses: timherrm/forgejo-CheckLabels@v1
         with:
           check_labels: "label1,label2,label3"
@@ -22,10 +25,10 @@ jobs:
           #debug: true                              #optional
   job2:
     needs: job1
+    if: needs.forgejo-test.outputs.label_result == 'Labels matched'
     runs-on: ubuntu-latest
     steps:
       - run: echo "✅ Pipeline runs because labels matched"
-
 ```
 
 ## Inputs/Outputs

@@ -27588,10 +27588,8 @@ async function run() {
         }
         if (result) {
             core.setOutput('result', 'Labels matched');
-            process.exit(0);
         } else {
-            core.setFailed('Labels did not match');
-            process.exit(1);
+            core.setOutput('result', 'Labels did not match');
         }
     } catch (error) {
         core.setFailed(error.message);

@@ -4,14 +4,23 @@ on:
   workflow_dispatch:
 
 jobs:
-  forgejo-test:
+  job1:
     runs-on: ubuntu-latest
+    outputs:
+      label_result: ${{ steps.check_labels.outputs.result }}
     steps:
       - uses: actions/checkout@v4
       - name: Run Forgejo API Action
+        id: check_labels
         uses: ./
         with:
           check_labels: "label1,label2"
           present_labels: "label1,label3,label4"
           operator: "or"
           debug: true
+  job2:
+    needs: job1
+    if: needs.job1.outputs.label_result == 'Labels matched'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "✅ Pipeline runs because labels matched"
