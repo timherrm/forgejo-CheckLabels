@@ -9,13 +9,17 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
+      - name: Extract labels  #optional
+        run: |
+          echo "PRESENT_LABELS=$(echo '${{ toJson(github) }}' | jq -r '[.event.issue.labels[].name] | join(",")')" >> $GITHUB_ENV
+
       - name: Run Forgejo API Action
         uses: timherrm/forgejo-CheckLabels@v1
         with:
           check_labels: "label1,label2,label3"
-          present_labels: "label1,label2,label3,label4"
+          present_labels: ${{ env.PRESENT_LABELS }} #or just "label1,label2,label4" 
           operator: "and"
-          #debug: true                                   #optional
+          #debug: true                              #optional
   job2:
     needs: job1
     runs-on: ubuntu-latest
