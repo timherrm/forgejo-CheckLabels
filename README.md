@@ -25,7 +25,7 @@ jobs:
           #debug: true                              #optional
   job2:
     needs: job1
-    if: needs.forgejo-test.outputs.label_result == 'Labels matched'
+    if: needs.job1.outputs.label_result == 'Labels matched'
     runs-on: ubuntu-latest
     steps:
       - run: echo "✅ Pipeline runs because labels matched"
