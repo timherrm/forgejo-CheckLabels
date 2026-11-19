@@ -9,7 +9,7 @@ jobs:
     outputs:
       label_result: ${{ steps.check_labels.outputs.result }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Run Forgejo API Action
         id: check_labels
         uses: ./
